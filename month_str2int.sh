@@ -14,17 +14,21 @@ if [ "$#" -ne 1 ]; then
 fi
 
 echo "Convert $1 ..."
+sedi=(-i)
+case "$(uname)" in
+	Darwin*) sedi=(-i "")
+esac
 cp $1 $1.backup && echo "created backup file $1.backup"
-sed --in-place -e 's/\(^ *month\) *= *["{]{*jan}*[}"]/\1 = "1"/i' $1 
-sed --in-place -e 's/\(^ *month\) *= *["{]{*feb}*[}"]/\1 = "2"/i' $1
-sed --in-place -e 's/\(^ *month\) *= *["{]{*mar}*[}"]/\1 = "3"/i' $1
-sed --in-place -e 's/\(^ *month\) *= *["{]{*apr}*[}"]/\1 = "4"/i' $1
-sed --in-place -e 's/\(^ *month\) *= *["{]{*may}*[}"]/\1 = "5"/i' $1
-sed --in-place -e 's/\(^ *month\) *= *["{]{*jun}*[}"]/\1 = "6"/i' $1
-sed --in-place -e 's/\(^ *month\) *= *["{]{*jul}*[}"]/\1 = "7"/i' $1
-sed --in-place -e 's/\(^ *month\) *= *["{]{*aug}*[}"]/\1 = "8"/i' $1
-sed --in-place -e 's/\(^ *month\) *= *["{]{*sep}*[}"]/\1 = "9"/i' $1
-sed --in-place -e 's/\(^ *month\) *= *["{]{*oct}*[}"]/\1 = "10"/i' $1
-sed --in-place -e 's/\(^ *month\) *= *["{]{*nov}*[}"]/\1 = "11"/i' $1
-sed --in-place -e 's/\(^ *month\) *= *["{]{*dec}*[}"]/\1 = "12"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*jan}*[}"]/\1 = "1"/i' $1 
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*feb}*[}"]/\1 = "2"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*mar}*[}"]/\1 = "3"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*apr}*[}"]/\1 = "4"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*may}*[}"]/\1 = "5"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*jun}*[}"]/\1 = "6"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*jul}*[}"]/\1 = "7"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*aug}*[}"]/\1 = "8"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*sep}*[}"]/\1 = "9"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*oct}*[}"]/\1 = "10"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*nov}*[}"]/\1 = "11"/i' $1
+sed "${sedi[@]}" -e 's/\(^ *month\) *= *["{]{*dec}*[}"]/\1 = "12"/i' $1
 
